@@ -8,19 +8,19 @@ const ToolTip: React.FC<{ message: string; children: ReactElement }> = ({
 }) => {
   return (
     <div
-      className="relative"
+      className="relative flex items-center justify-center"
       onMouseEnter={(e) => {
         let infoBox = (e.currentTarget.firstChild as HTMLElement) || null;
         infoBox?.classList.remove("opacity-0");
         infoBox?.classList.add("opacity-100");
         infoBox?.classList.remove("top-0");
-        infoBox?.classList.add("top-[calc(-100%-4px)]");
+        infoBox?.classList.add("top-[calc(-100%-8px)]");
       }}
       onMouseLeave={(e) => {
         let infoBox = (e.currentTarget.firstChild as HTMLElement) || null;
         infoBox?.classList.remove("opacity-100");
         infoBox?.classList.add("opacity-0");
-        infoBox?.classList.remove("top-[calc(-100%-4px)]");
+        infoBox?.classList.remove("top-[calc(-100%-8px)]");
         infoBox?.classList.add("top-0");
       }}
     >
