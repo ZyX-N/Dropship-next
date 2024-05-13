@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
+  
   const banners: any = [
     {
       title: "Slide 1",
@@ -22,15 +23,16 @@ export default function Home() {
   ];
 
   return (
-    // <div className="h-screen overflow-hidden">
     <div className="">
       <Navbar />
 
-      {/* <div className="w-full">
+      <div className="w-full">
         <BannerSlider data={banners} />
-      </div> */}
+      </div>
       <main className="flex min-h-screen flex-col px-10">
+
         <section className="text-gray-600 w-full flex justify-center py-16 container">
+
           <div className="w-full md:w-1/2 bg-greena-500 flex items-center justify-center flex-col">
             <div className="flex flex-col items-start w-full">
               <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
@@ -60,7 +62,9 @@ export default function Home() {
               className="rounded-full w-60 h-60"
             />
           </div>
+
         </section>
+
       </main>
     </div>
   );

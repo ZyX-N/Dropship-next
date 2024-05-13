@@ -6,34 +6,55 @@ export function BannerSlider({ data }: { data: Array<any> }) {
   const [slide, setSlide] = useState<number>(0);
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      setSlide((prev) => (prev === data.length - 1 ? 0 : prev + 1));
-    }, 4000);
+    // let timer = setInterval(() => {
+    //   setSlide((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+    // }, 4000);
 
-    return () => clearInterval(timer);
+    // return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="w-full">
       <div id="default-carousel" className="relative">
-        <div className="overflow-hidden flex w-full h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+        <div className="overflow-hidden flex w-full h-[300px] sm:h-[400px] xl:h-[500px]">
           {data?.map((item: any, index: number) => (
             <div
-              className={`absolute duration-700 ease-in-out bg-green-300 rounded-lg left-0 top-0 w-full h-full ${
+              className={`absolute duration-700 ease-in-out bg-green-300 left-0 top-0 w-full h-full ${
                 slide === index ? "opacity-100 z-20" : "opacity-0 z-10"
               }`}
               key={item.title}
             >
               <img
                 src={item.image}
-                className="w-full h-full rounded-lg"
+                className="w-full h-full"
                 alt={item.title}
               />
             </div>
           ))}
         </div>
 
-        <div className="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+        <div className="absolute z-30 top-1/2 -translate-y-1/2 left-[16%] flex flex-col items-start gap-4">
+          <h1 className="flex flex-col gap-1 sm:gap-3">
+            <span className="text-lg sm:text-xl lg:text-2xl font-medium">
+              Easy, Fresh & Convenient
+            </span>
+            <span className="text-2xl sm:text-4xl lg:text-6xl font-semibold sm:font-medium">
+              Stock Up on <br />
+              Daily Essentials
+            </span>
+            <span className="text-lg sm:text-2xl lg:text-4xl font-semibold sm:font-medium">
+              Save Big on Your <br />
+              Favorite Brands
+            </span>
+          </h1>
+          <button
+            type="button"
+            className="rounded-full border border-amber-600 px-5 py-1.5 font-medium text-sm sm:text-md lg:text-lg bg-amber-600 hover:bg-white hover:text-amber-600"
+          >
+            Shop Now
+          </button>
+        </div>
+        {/* <div className="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
           {data?.map((item: any, index: number) => (
             <button
               key={index}
@@ -44,9 +65,9 @@ export function BannerSlider({ data }: { data: Array<any> }) {
               onClick={() => setSlide(index)}
             ></button>
           ))}
-        </div>
+        </div> */}
 
-        <button
+        {/* <button
           type="button"
           className="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
           onClick={() => setSlide(slide > 0 ? slide - 1 : data.length - 1)}
@@ -92,7 +113,7 @@ export function BannerSlider({ data }: { data: Array<any> }) {
             </svg>
             <span className="hidden">Next</span>
           </span>
-        </button>
+        </button> */}
       </div>
     </div>
   );
