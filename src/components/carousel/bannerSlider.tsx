@@ -19,7 +19,7 @@ export function BannerSlider({ data }: { data: Array<any> }) {
         <div className="overflow-hidden flex w-full h-[300px] sm:h-[400px] xl:h-[500px]">
           {data?.map((item: any, index: number) => (
             <div
-              className={`absolute duration-700 ease-in-out bg-green-300 left-0 top-0 w-full h-full ${
+              className={`absolute duration-700 ease-in-out left-0 top-0 w-full h-full ${
                 slide === index ? "opacity-100 z-20" : "opacity-0 z-10"
               }`}
               key={item.title}
