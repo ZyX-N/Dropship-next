@@ -1,10 +1,9 @@
 import { StripCard } from "@/components/card/Strip";
 import { BannerSlider } from "@/components/carousel/bannerSlider";
+import { Phone, Truck } from "@/components/icons";
+import { CreditCard } from "@/components/icons/credit";
+import { Gift } from "@/components/icons/gift";
 import Navbar from "@/components/nav/Navbar";
-import ToolTip from "@/components/tool-tip/info";
-import ProContext from "@/context/mainContext";
-import Image from "next/image";
-import { useState } from "react";
 
 export default function Home() {
   const banners: any = [
@@ -22,16 +21,28 @@ export default function Home() {
     },
   ];
 
+  const stripClass:string = "size-10 text-amber-600";
+
   const strips: any = [
     {
-      logo: <img src="/static/image/img3.jpg" />,
+      logo: <Truck className={stripClass} />,
       title: "Free Delivery",
       link: "to your door",
     },
     {
-      logo: <img src="/static/image/img2.jpg" />,
+      logo: <Phone className={stripClass} />,
       title: "Available for you",
       link: "<a href='/'><u>Online Support</u></a> 24/7",
+    },
+    {
+      logo: <Gift className={stripClass} />,
+      title: "Special Offers",
+      link: "for our loyal customers",
+    },
+    {
+      logo: <CreditCard className={stripClass} />,
+      title: "Secure Payment",
+      link: "with SSL encryption",
     },
   ];
 
@@ -43,7 +54,7 @@ export default function Home() {
         <BannerSlider data={banners} />
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex lg:flex-row flex-col items-center justify-center lg:divide-x divide-black mt-6">
         {strips.map(({ logo, title, link }: any) => (
           <StripCard logo={logo} title={title} link={link} />
         ))}

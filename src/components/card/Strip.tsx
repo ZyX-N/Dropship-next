@@ -10,11 +10,11 @@ export function StripCard({
   link: string;
 }) {
   return (
-    <div className="flex h-24 w-72 bg-gray-400">
+    <div className="flex items-center justify-center h-24 w-full sm:px-4 px-8 sm:w-64 bg-transparent">
       <div className="w-1/5">{logo}</div>
-      <div className="flex flex-col w-4/5">
-        <h6 className="text-xl font-medium p-1">{title}</h6>
-        <span className="text-lg" dangerouslySetInnerHTML={{ __html: link }} />
+      <div className="flex flex-col w-4/5 pl-2">
+        <h6 className="text-lg font-semibold">{title}</h6>
+        <span className="text-sm" dangerouslySetInnerHTML={{ __html: link }} />
       </div>
     </div>
   );
