@@ -21,7 +21,7 @@ export default function Home() {
     },
   ];
 
-  const stripClass:string = "size-10 text-amber-600";
+  const stripClass: string = "size-10 text-amber-600";
 
   const strips: any = [
     {
@@ -54,45 +54,163 @@ export default function Home() {
         <BannerSlider data={banners} />
       </div>
 
-      <div className="flex lg:flex-row flex-col items-center justify-center lg:divide-x divide-black mt-6">
-        {strips.map(({ logo, title, link }: any) => (
-          <StripCard logo={logo} title={title} link={link} />
-        ))}
-      </div>
+      <div className="flex flex-col max-w-6xl px-4 mx-auto">
+        <div className="flex lg:flex-row flex-col items-center justify-center divide-y lg:divide-y-0 divide-x-0 lg:divide-x divide-black mt-6">
+          {strips.map(({ logo, title, link }: any) => (
+            <StripCard logo={logo} title={title} link={link} />
+          ))}
+        </div>
 
-      <main className="flex min-h-screen flex-col px-10">
-        <section className="text-gray-600 w-full flex justify-center py-16 container">
-          <div className="w-full md:w-1/2 bg-greena-500 flex items-center justify-center flex-col">
-            <div className="flex flex-col items-start w-full">
-              <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                Microdosing synth tattooed vexillologist
-              </h1>
-              <p className="mb-8 leading-relaxed">
-                Meggings kinfolk echo park stumptown DIY, kale chips beard
-                jianbing tousled. Chambray dreamcatcher trust fund, kitsch vice
-                godard disrupt ramps hexagon mustache umami snackwave tilde
-                chillwave ugh. Pour-over meditation PBR&B pickled ennui celiac
-                mlkshk freegan photo booth af fingerstache pitchfork.
-              </p>
-              <div className="flex justify-center">
-                <button className="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">
-                  Button
-                </button>
-                <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                  Button
-                </button>
+        <section className="flex flex-col mt-10">
+          <h3 className="text-3xl font-semibold">Best Deals</h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/420x260"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  The Catalyzer
+                </h2>
+                <p className="mt-1">$16.00</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/421x261"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  Shooting Stars
+                </h2>
+                <p className="mt-1">$21.15</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/422x262"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  Neptune
+                </h2>
+                <p className="mt-1">$12.00</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/423x263"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  The 400 Blows
+                </h2>
+                <p className="mt-1">$18.40</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/424x264"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  The Catalyzer
+                </h2>
+                <p className="mt-1">$16.00</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/425x265"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  Shooting Stars
+                </h2>
+                <p className="mt-1">$21.15</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/427x267"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  Neptune
+                </h2>
+                <p className="mt-1">$12.00</p>
+              </div>
+            </div>
+            <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://dummyimage.com/428x268"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  CATEGORY
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  The 400 Blows
+                </h2>
+                <p className="mt-1">$18.40</p>
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src="/logo.jpg"
-              alt="Logo"
-              className="rounded-full w-60 h-60"
-            />
-          </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

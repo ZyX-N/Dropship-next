@@ -10,7 +10,7 @@ export function StripCard({
   link: string;
 }) {
   return (
-    <div className="flex items-center justify-center h-24 w-full sm:px-4 px-8 sm:w-64 bg-transparent">
+    <div className="flex items-center justify-center h-24 w-full sm:px-4 px-8 sm:w-68 bg-transparent">
       <div className="w-1/5">{logo}</div>
       <div className="flex flex-col w-4/5 pl-2">
         <h6 className="text-lg font-semibold">{title}</h6>
