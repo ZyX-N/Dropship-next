@@ -4,6 +4,7 @@ import { Phone, Truck } from "@/components/icons";
 import { CreditCard } from "@/components/icons/credit";
 import { Gift } from "@/components/icons/gift";
 import Navbar from "@/components/nav/Navbar";
+import Image from "next/image";
 
 export default function Home() {
   const banners: any = [
@@ -66,9 +67,10 @@ export default function Home() {
           <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/420x260"
                 />
               </a>
@@ -84,9 +86,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/421x261"
                 />
               </a>
@@ -102,9 +105,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/422x262"
                 />
               </a>
@@ -120,9 +124,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/423x263"
                 />
               </a>
@@ -138,9 +143,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/424x264"
                 />
               </a>
@@ -156,9 +162,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/425x265"
                 />
               </a>
@@ -174,9 +181,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/427x267"
                 />
               </a>
@@ -192,9 +200,10 @@ export default function Home() {
             </div>
             <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
               <a className="block relative h-48 rounded overflow-hidden">
-                <img
+                <Image
                   alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
+                  fill={true}
+                  className="object-cover object-center block"
                   src="https://dummyimage.com/428x268"
                 />
               </a>
