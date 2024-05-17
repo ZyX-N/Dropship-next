@@ -1,6 +1,6 @@
 import React from "react";
 
-export function StripCard({
+export const StripCard = ({
   logo,
   title,
   link,
@@ -8,7 +8,7 @@ export function StripCard({
   logo: React.ReactNode;
   title: string;
   link: string;
-}) {
+}) => {
   return (
     <div className="flex items-center justify-center h-24 w-full sm:px-4 px-8 sm:w-68 bg-transparent">
       <div className="w-1/5">{logo}</div>
@@ -18,4 +18,4 @@ export function StripCard({
       </div>
     </div>
   );
-}
+};
