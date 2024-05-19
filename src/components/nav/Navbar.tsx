@@ -4,6 +4,7 @@ import ToolTip from "../tool-tip/info";
 import { Cross } from "../icons/cross";
 import { Person } from "../icons/person";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [nav, setNav] = useState<boolean>(false);
@@ -35,10 +36,12 @@ const Navbar = () => {
               href="/"
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
-              <img
+              <Image
                 src="/logo.jpg"
-                className="h-10 rounded-full"
-                alt="Zixen Logo"
+                height={40}
+                width={40}
+                alt="Zixen"
+                className="rounded-full"
               />
               <span className="self-center text-3xl font-semibold whitespace-nowrap">
                 Zixen

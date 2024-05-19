@@ -1,10 +1,11 @@
 import { StripCard, Product } from "@/components/card";
 import { BannerSlider } from "@/components/carousel/bannerSlider";
+import { Contact } from "@/components/contact";
+import { Footer } from "@/components/footer";
 import { Phone, Truck } from "@/components/icons";
-import { CreditCard } from "@/components/icons/credit";
-import { Gift } from "@/components/icons/gift";
+import { Gift,CreditCard } from "@/components/icons";
 import Navbar from "@/components/nav/Navbar";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function Home() {
   const banners: any = [
@@ -12,14 +13,14 @@ export default function Home() {
       title: "Slide 1",
       image: "/static/image/img1.jpg",
     },
-    {
-      title: "Slide 2",
-      image: "/static/image/img2.jpg",
-    },
-    {
-      title: "Slide 3",
-      image: "/static/image/img3.jpg",
-    },
+    // {
+    //   title: "Slide 2",
+    //   image: "/static/image/img2.jpg",
+    // },
+    // {
+    //   title: "Slide 3",
+    //   image: "/static/image/img3.jpg",
+    // },
   ];
 
   const stripClass: string = "size-10 text-amber-600";
@@ -129,6 +130,14 @@ export default function Home() {
             )}
           </div>
         </section>
+      </div>
+
+      <div className="mt-12">
+        <Contact />
+      </div>
+
+      <div className="mt-12">
+        <Footer />
       </div>
     </div>
   );
