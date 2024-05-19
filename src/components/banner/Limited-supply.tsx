@@ -8,7 +8,7 @@ export const LimitedBanner = () => {
         <h2 className="text-3xl font-semibold">Great Deals on</h2>
         <h3 className="text-6xl font-semibold">Selected Wines</h3>
         <p className="text-gray-700 py-4 w-2/3">
-          I'm a paragraph. Click here to add your own text and edit me. Let your
+          I&asop;m a paragraph. Click here to add your own text and edit me. Let your
           users get to know you.
         </p>
         <button className="flex text-red-50 bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-amber-700 text-lg rounded-3xl">
