@@ -102,8 +102,6 @@ export default function Home() {
 
   return (
     <div className="">
-      <Navbar />
-
       <div className="w-full">
         <BannerSlider data={banners} />
       </div>
@@ -161,10 +159,6 @@ export default function Home() {
 
       <div className="mt-12">
         <Contact />
-      </div>
-
-      <div className="mt-12">
-        <Footer />
       </div>
     </div>
   );

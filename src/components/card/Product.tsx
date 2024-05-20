@@ -16,7 +16,8 @@ export const Product = ({
   return (
     <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full">
       <Link
-        href={category + "/" + title}
+        // href={category + "/" + title}
+        href={"product" + "/" + title}
         className="block relative h-48 rounded overflow-hidden"
       >
         <Image

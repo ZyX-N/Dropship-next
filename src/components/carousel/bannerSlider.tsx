@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export function BannerSlider({ data }: { data: Array<any> }) {
@@ -24,9 +25,9 @@ export function BannerSlider({ data }: { data: Array<any> }) {
               }`}
               key={item.title}
             >
-              <img
+              <Image
                 src={item.image}
-                className="w-full h-full"
+                fill={true}
                 alt={item.title}
               />
             </div>
