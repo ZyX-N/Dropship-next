@@ -147,18 +147,20 @@ const Navbar = () => {
             <li className="px-4 py-3">
               <Link href="/deals">Deals</Link>
             </li>
-            <li className="px-4 py-3">
+            {/* <li className="px-4 py-3">
               <Link href="/food">Food</Link>
             </li>
             <li className="px-4 py-3">
               <Link href="/beverages">Beverages</Link>
-            </li>
+            </li> */}
             <li className="px-4 py-3">
               <Link href="/household">Household</Link>
             </li>
             <li className="px-4 py-3">
+              <Link href="/household">Electronic</Link>
+            </li>
+            <li className="px-4 py-3">
               <Link href="/personal">Personal</Link>
-              Care
             </li>
             <li className="px-4 py-3">
               <Link href="/popular">Popular</Link>
@@ -231,12 +233,12 @@ const Navbar = () => {
             <li className="px-4 py-3">
               <Link href="/deals">Deals</Link>
             </li>
-            <li className="px-4 py-3">
+            {/* <li className="px-4 py-3">
               <Link href="/food">Food</Link>
             </li>
             <li className="px-4 py-3">
               <Link href="/beverages">Beverages</Link>
-            </li>
+            </li> */}
             <li className="px-4 py-3">
               <Link href="/household">Household</Link>
             </li>
