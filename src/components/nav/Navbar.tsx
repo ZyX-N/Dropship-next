@@ -155,7 +155,7 @@ const Navbar = () => {
         <div className="w-full bg-white px-4 pb-2 md:pb-0">
           <ul className="w-full hidden md:flex justify-between mx-auto max-w-4xl">
             {navlist.map((item) => (
-              <li className="px-4 py-3">
+              <li className="px-4 py-3" key={item.title}>
                 <Link href={"/category" + item.url}>{item.title}</Link>
               </li>
             ))}
@@ -222,7 +222,7 @@ const Navbar = () => {
         <div className="flex flex-col justify-start ">
           <ul className="w-full md:hidden flex flex-col items-center justify-between gap-1">
             {navlist.map((item) => (
-              <li className="px-4 py-3">
+              <li className="px-4 py-3" key={item.title}>
                 <Link href={"/category" + item.url}>{item.title}</Link>
               </li>
             ))}
