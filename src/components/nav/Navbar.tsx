@@ -8,6 +8,16 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [nav, setNav] = useState<boolean>(false);
+
+  const navlist = [
+    { title: "Deals", url: "/deals" },
+    { title: "Household", url: "/household" },
+    { title: "Electronic", url: "/electronic" },
+    { title: "Personal", url: "/personal" },
+    { title: "Popular", url: "/popular" },
+    { title: "Orders", url: "/order" },
+  ];
+
   return (
     <>
       <header className="flex flex-col items-center">
@@ -144,30 +154,11 @@ const Navbar = () => {
 
         <div className="w-full bg-white px-4 pb-2 md:pb-0">
           <ul className="w-full hidden md:flex justify-between mx-auto max-w-4xl">
-            <li className="px-4 py-3">
-              <Link href="/deals">Deals</Link>
-            </li>
-            {/* <li className="px-4 py-3">
-              <Link href="/food">Food</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/beverages">Beverages</Link>
-            </li> */}
-            <li className="px-4 py-3">
-              <Link href="/household">Household</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/household">Electronic</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/personal">Personal</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/popular">Popular</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/orders">Orders</Link>
-            </li>
+            {navlist.map((item) => (
+              <li className="px-4 py-3">
+                <Link href={"/category" + item.url}>{item.title}</Link>
+              </li>
+            ))}
           </ul>
           <div className="items-center justify-between md:hidden w-full flex ">
             <div className="rounded-md border border-black flex items-center mx-auto w-full">
@@ -230,28 +221,11 @@ const Navbar = () => {
 
         <div className="flex flex-col justify-start ">
           <ul className="w-full md:hidden flex flex-col items-center justify-between gap-1">
-            <li className="px-4 py-3">
-              <Link href="/deals">Deals</Link>
-            </li>
-            {/* <li className="px-4 py-3">
-              <Link href="/food">Food</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/beverages">Beverages</Link>
-            </li> */}
-            <li className="px-4 py-3">
-              <Link href="/household">Household</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/personal">Personal</Link>
-              Care
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/popular">Popular</Link>
-            </li>
-            <li className="px-4 py-3">
-              <Link href="/orders">Orders</Link>
-            </li>
+            {navlist.map((item) => (
+              <li className="px-4 py-3">
+                <Link href={"/category" + item.url}>{item.title}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
