@@ -18,7 +18,7 @@ export const Product = ({
       <Link
         // href={category + "/" + title}
         href={"product" + "/" + title}
-        className="block relative h-48 rounded overflow-hidden"
+        className="block relative h-48 rounded overflow-hidden hover:scale-105 transition-all duration-300"
       >
         <Image
           alt="ecommerce"
