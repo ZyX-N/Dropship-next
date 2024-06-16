@@ -1,7 +1,16 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Home() {
+export default function Home({ params }: { params: { slug: string } }) {
+  
+  const createTitleFromUrl: (title: string) => string = (title) => {
+    return title.replaceAll("%20", " ").replaceAll("-", " ");
+  };
+
+  const productTitle = params.slug
+    ? createTitleFromUrl(params.slug)
+    : "Product";
+
   return (
     <main className="max-w-6xl px-4 mx-auto py-6">
       <section className="text-black body-font overflow-hidden">
@@ -46,7 +55,8 @@ export default function Home() {
               BRAND NAME
             </h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              The Catcher in the Rye
+              {/* The Catcher in the Rye */}
+              {productTitle}
             </h1>
             <div className="flex mb-4">
               <span className="flex items-center">
