@@ -30,13 +30,13 @@ const Navbar = () => {
             <p className="static mx-auto md:absolute md:left-1/2 md:-translate-x-1/2 md:top-2">
               Get 20% off your first order. <u>Subscribe</u>
             </p>
-            <button
-              type="button"
+            <Link
+              href={"/login"}
               className="hidden md:flex items-center gap-2 hover:text-gray-900"
             >
               <Person />
               <span>Log In</span>
-            </button>
+            </Link>
           </div>
         </div>
 
