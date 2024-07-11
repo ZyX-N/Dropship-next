@@ -8,8 +8,9 @@ import { app } from "@/config/firebase";
 import {
   getAuth,
   signInWithPhoneNumber,
-  RecaptchaVerifier
+  RecaptchaVerifier,
 } from "firebase/auth";
+import InputOtp from "@/components/input/inputOtp";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -21,13 +22,13 @@ const SignUp = () => {
 
   const auth = getAuth(app);
   const [vfCode, setVfCode] = useState<any>({});
+  const [otpScreen, setOtpScreen] = useState<boolean>(true);
   const [otp, setOtp] = useState("");
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     console.log(data);
 
-    const windowRef = window;
     const recaptchaVerifier = new RecaptchaVerifier(
       auth,
       "recaptcha-container",
@@ -44,7 +45,6 @@ const SignUp = () => {
     );
     console.log("--------------------*");
     console.log(a);
-    console.log(Object.keys(a));
     setVfCode(a);
   };
 
@@ -68,87 +68,102 @@ const SignUp = () => {
         id="recaptcha-container"
       ></div>
 
-      <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col gap-4">
-        <h2 className="text-2xl font-medium px-6 pb-4">Sign Up</h2>
-        <form
-          className="size-full flex flex-col gap-10"
-          onSubmit={submitHandler}
-        >
-          <div className="flex flex-col px-6">
-            <label htmlFor="name">Name</label>
-            <InputText
-              id="name"
-              value={data.name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData((prev) => ({ ...prev, name: e.target.value }))
-              }
-            />
-          </div>
-
-          <div className="flex flex-col px-6">
-            <label htmlFor="email">Email</label>
-            <InputText
-              id="email"
-              value={data.email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData((prev) => ({ ...prev, email: e.target.value }))
-              }
-            />
-          </div>
-
-          <div className="flex flex-col px-6">
-            <label htmlFor="mobile">Mobile</label>
-            <InputText
-              id="mobile"
-              type="number"
-              value={data.mobile}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData((prev) => ({ ...prev, mobile: e.target.value }))
-              }
-            />
-          </div>
-
-          <div className="flex flex-col px-6">
-            <label htmlFor="password">Password</label>
-            <InputText
-              id="password"
-              value={data.password}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData((prev) => ({ ...prev, password: e.target.value }))
-              }
-            />
-          </div>
-
-          <div className="flex gap-2 px-6 -mb-6 text-sm font-medium">
-            <span>Already a customer?</span>
-            <Link href="/login" className="text-amber-600">
-              Login
-            </Link>
-          </div>
-
-          <div className="flex flex-col px-6">
-            <ButtonSave>Sign Up</ButtonSave>
-          </div>
-        </form>
-
-        <div>
-          <form onSubmit={subOtp} className="">
+      {!otpScreen ? (
+        <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col gap-4">
+          <h2 className="text-2xl font-medium px-6 pb-4">Sign Up</h2>
+          <form
+            className="size-full flex flex-col gap-10"
+            onSubmit={submitHandler}
+          >
             <div className="flex flex-col px-6">
-              <label htmlFor="name">OTP</label>
+              <label htmlFor="name">Name</label>
               <InputText
-                id="otp"
-                value={otp}
+                id="name"
+                value={data.name}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setOtp(e.target.value)
+                  setData((prev) => ({ ...prev, name: e.target.value }))
                 }
               />
             </div>
+
             <div className="flex flex-col px-6">
-              <ButtonSave>Submit Otp</ButtonSave>
+              <label htmlFor="email">Email</label>
+              <InputText
+                id="email"
+                value={data.email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setData((prev) => ({ ...prev, email: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="flex flex-col px-6">
+              <label htmlFor="mobile">Mobile</label>
+              <InputText
+                id="mobile"
+                type="number"
+                value={data.mobile}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setData((prev) => ({ ...prev, mobile: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="flex flex-col px-6">
+              <label htmlFor="password">Password</label>
+              <InputText
+                id="password"
+                value={data.password}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setData((prev) => ({ ...prev, password: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="flex gap-2 px-6 -mb-6 text-sm font-medium">
+              <span>Already a customer?</span>
+              <Link href="/login" className="text-amber-600">
+                Login
+              </Link>
+            </div>
+
+            <div className="flex flex-col px-6">
+              <ButtonSave>Sign Up</ButtonSave>
             </div>
           </form>
+
+          <div>
+            <form onSubmit={subOtp} className="">
+              <div className="flex flex-col px-6">
+                <label htmlFor="name">OTP</label>
+                <InputText
+                  id="otp"
+                  value={otp}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setOtp(e.target.value)
+                  }
+                />
+              </div>
+              <div className="flex flex-col px-6">
+                <ButtonSave>Submit Otp</ButtonSave>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col gap-4">
+          <h2 className="text-2xl font-medium px-6 pb-4">OTP</h2>
+            <form onSubmit={subOtp} className="flex flex-col gap-6">
+              <div className="flex flex-col px-6">
+                <InputOtp
+                />
+              </div>
+              <div className="flex flex-col px-6">
+                <ButtonSave>Submit Otp</ButtonSave>
+              </div>
+            </form>
+        </div>
+      )}
     </div>
   );
 };
