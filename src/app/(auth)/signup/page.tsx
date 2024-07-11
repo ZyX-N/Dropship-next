@@ -11,19 +11,23 @@ import {
   RecaptchaVerifier,
 } from "firebase/auth";
 import InputOtp from "@/components/input/inputOtp";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+  const router = useRouter();
+  const auth = getAuth(app);
+
   const [data, setData] = useState({
-    name: "Aman",
-    email: "rocketboy9198@gmail.com",
-    mobile: "916393411410",
-    password: "1234",
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
   });
 
-  const auth = getAuth(app);
   const [vfCode, setVfCode] = useState<any>({});
-  const [otpScreen, setOtpScreen] = useState<boolean>(true);
-  const [otp, setOtp] = useState("");
+  const [otpScreen, setOtpScreen] = useState<boolean>(false);
+  const [otpAvailable, setOtpAvailable] = useState<boolean>(false);
+  const [otp, setOtp] = useState<string>("");
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,27 +40,31 @@ const SignUp = () => {
         // size: "invisible",
       }
     );
-    console.log(recaptchaVerifier);
 
-    let a = await signInWithPhoneNumber(
+    let codeAndCb = await signInWithPhoneNumber(
       auth,
-      `+${data.mobile}`,
+      `+91${data.mobile}`,
       recaptchaVerifier
     );
-    console.log("--------------------*");
-    console.log(a);
-    setVfCode(a);
+
+    setVfCode(codeAndCb);
+    setOtpScreen(true);
+    setOtpAvailable(true);
   };
 
   const subOtp = async (e: FormEvent) => {
     e.preventDefault();
     console.log(otp);
 
-    console.log(vfCode.confirm);
-    const confirmationResult = await vfCode.confirm(otp);
-
-    console.log("check ************");
-    console.log(confirmationResult);
+    try {
+      const confirmationResult = await vfCode.confirm(otp);
+      console.log("check ************");
+      console.log(confirmationResult);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      alert("Invalid OTP");
+    }
   };
 
   // "AD8T5Ivets2LxwLogkJNpC09tZDbjWPnN5cfzFaguYnRz7zFPTK8xrKa9tJxgUfH3h6p0JWGf04ERp9kEjFM9IY0NQSqLK9WioQdeJC7Ig4PqRwxA2rjrH5Oc_n5Ssb35vlZ6fjbsTAgjZSY_ab7lag0hwiW1Eda77jyXEmxEE_jGsWnWUrTwgsKuFHvynn5UuNfiqlu5YZbFjGdmVEcFoQq2Ys0qCTFa0XTcIcCfsTnuhZSgNhOvsE"
@@ -120,48 +128,49 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="flex gap-2 px-6 -mb-6 text-sm font-medium">
-              <span>Already a customer?</span>
-              <Link href="/login" className="text-amber-600">
-                Login
-              </Link>
+            <div className="flex justify-between px-6 -mb-6 text-sm font-medium">
+              <div className="flex gap-2">
+                <span>Already a customer?</span>
+                <Link href="/login" className="text-amber-600">
+                  Login
+                </Link>
+              </div>
+              {otpAvailable && (
+                <button
+                  type="button"
+                  className="text-amber-600 hover:text-amber-500 cursor-pointer hover:scale-105"
+                  onClick={() => setOtpScreen(true)}
+                >
+                  Enter OTP
+                </button>
+              )}
             </div>
 
             <div className="flex flex-col px-6">
               <ButtonSave>Sign Up</ButtonSave>
             </div>
           </form>
-
-          <div>
-            <form onSubmit={subOtp} className="">
-              <div className="flex flex-col px-6">
-                <label htmlFor="name">OTP</label>
-                <InputText
-                  id="otp"
-                  value={otp}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setOtp(e.target.value)
-                  }
-                />
-              </div>
-              <div className="flex flex-col px-6">
-                <ButtonSave>Submit Otp</ButtonSave>
-              </div>
-            </form>
-          </div>
         </div>
       ) : (
-        <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col gap-4">
-          <h2 className="text-2xl font-medium px-6 pb-4">OTP</h2>
-            <form onSubmit={subOtp} className="flex flex-col gap-6">
-              <div className="flex flex-col px-6">
-                <InputOtp
-                />
-              </div>
-              <div className="flex flex-col px-6">
-                <ButtonSave>Submit Otp</ButtonSave>
-              </div>
-            </form>
+        <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col">
+          <div className="flex items-center gap-4 pb-4 px-6">
+            <button
+              type="button"
+              className="text-xl font-bold"
+              onClick={() => setOtpScreen(false)}
+            >
+              &larr;
+            </button>
+            <h2 className="text-2xl font-medium">OTP</h2>
+          </div>
+          <form onSubmit={subOtp} className="flex flex-col gap-6">
+            <div className="flex flex-col px-6">
+              <InputOtp size={6} setValue={setOtp} />
+            </div>
+            <div className="flex flex-col px-6">
+              <ButtonSave>Submit Otp</ButtonSave>
+            </div>
+          </form>
         </div>
       )}
     </div>

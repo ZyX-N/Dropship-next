@@ -1,51 +1,68 @@
-const InputOtp = ({
-  size = 6,
-  type = "number",
-}: {
-  size?: number;
-  type?: string;
-}) => {
+import { useMemo, useState } from "react";
+
+const InputOtp = ({ size = 6, setValue }: { size?: number; setValue: any }) => {
+  const boxes = Array.from(
+    { length: size },
+    (_, idx) => "otp" + String(idx + 1)
+  );
+
+  const [otp, setOtp] = useState<any>({});
+
+  useMemo(() => {
+    boxes.forEach((key) => {
+      setOtp((prev: any) => ({ ...prev, [key]: "" }));
+    });
+  }, []);
+
+  useMemo(() => {
+    let otpVal = "";
+    for (let e in otp) {
+      otpVal = otpVal + otp[e];
+    }
+    setValue(otpVal);
+  }, [otp]);
+
+  const inputHandler = (e: any, item: string) => {
+    let key = e.key;
+    const ibNumber = Number(item[item.length - 1]);
+
+    if (
+      key === "1" ||
+      key === "2" ||
+      key === "3" ||
+      key === "4" ||
+      key === "5" ||
+      key === "6" ||
+      key === "7" ||
+      key === "8" ||
+      key === "9" ||
+      key === "0"
+    ) {
+      setOtp((prev: any) => ({ ...prev, [item]: e.key }));
+      if (ibNumber < size) {
+        document.getElementById(`otp${ibNumber + 1}`)?.focus();
+      }
+    } else if (key === "Backspace") {
+      setOtp((prev: any) => ({ ...prev, [item]: "" }));
+      if (ibNumber > 1) {
+        document.getElementById(`otp${ibNumber - 1}`)?.focus();
+      }
+    }
+  };
+
   const focusHandler = (e: any) => {
     let element: HTMLElement = e.target;
     element.classList.remove("border-gray-900");
-    element.classList.add("border-blue-600");
-    element.classList.add("text-blue-600");
+    element.classList.add("border-amber-500");
+    element.classList.add("text-amber-500");
   };
 
   const blurHandler = (e: any) => {
     let element: HTMLElement = e.target;
-    element.classList.remove("border-blue-600");
+    element.classList.remove("border-amber-500");
     element.classList.add("border-gray-900");
-    element.classList.remove("text-blue-600");
+    element.classList.remove("text-amber-500");
   };
-
-  const inputHandler = (e: any, item: number) => {
-    console.log("asasas");
-    console.log(item);
-    let element = e.target;
-    let key = Number(e.key);
-
-    if (
-      key === 1 ||
-      key === 2 ||
-      key === 3 ||
-      key === 4 ||
-      key === 5 ||
-      key === 6 ||
-      key === 7 ||
-      key === 8 ||
-      key === 9 ||
-      key === 0
-    ) {
-      element.value = key;
-    } else {
-      console.log("lll");
-
-      element.value = "";
-    }
-  };
-
-  const boxes = Array.from({ length: size }, (_, idx) => idx + 1);
 
   return (
     <div className="flex items-center justify-between py-2">
@@ -55,8 +72,8 @@ const InputOtp = ({
             key={item}
             className={`size-14 outline-none rounded-md border-2 border-gray-900 text-center`}
             type="text"
-            //   value={1}
-            // onChange={(e) => inputHandler(e, item)}
+            id={item}
+            value={otp[item]}
             onKeyDown={(e) => inputHandler(e, item)}
             onFocus={focusHandler}
             onBlur={blurHandler}
