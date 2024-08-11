@@ -12,7 +12,7 @@ const InputOtp = ({ size = 6, setValue }: { size?: number; setValue: any }) => {
     boxes.forEach((key) => {
       setOtp((prev: any) => ({ ...prev, [key]: "" }));
     });
-  }, []);
+  }, [boxes]);
 
   useMemo(() => {
     let otpVal = "";
