@@ -2,8 +2,10 @@ import { DiscountBanner, LimitedBanner } from "@/components/banner";
 import { StripCard, Product } from "@/components/card";
 import { BannerSlider } from "@/components/carousel/bannerSlider";
 import { Contact } from "@/components/contact";
+import { Footer } from "@/components/footer/footer";
 import { Phone, Truck } from "@/components/icons";
 import { Gift, CreditCard } from "@/components/icons";
+import Navbar from "@/components/nav/Navbar";
 // import Image from "next/image";
 
 export default function Home() {
@@ -100,6 +102,7 @@ export default function Home() {
 
   return (
     <>
+      {/* <Navbar /> */}
       <div className="w-full">
         <BannerSlider data={banners} />
       </div>
@@ -158,6 +161,7 @@ export default function Home() {
       <div className="mt-12">
         <Contact />
       </div>
+      {/* <Footer /> */}
     </>
   );
 }

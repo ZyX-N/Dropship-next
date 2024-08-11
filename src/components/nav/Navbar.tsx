@@ -1,22 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToolTip from "../tool-tip/info";
 import { Cross } from "../icons/cross";
 import { Person } from "../icons/person";
 import Link from "next/link";
 import Image from "next/image";
+import { getCall } from "../../service/apiCall";
 
 const Navbar = () => {
   const [nav, setNav] = useState<boolean>(false);
 
-  const navlist = [
-    { title: "Deals", url: "/deals" },
-    { title: "Household", url: "/household" },
-    { title: "Electronic", url: "/electronic" },
-    { title: "Personal", url: "/personal" },
-    { title: "Popular", url: "/popular" },
-    { title: "Orders", url: "/order" },
-  ];
+  // const navlist = [
+  //   { title: "Deals", url: "/deals" },
+  //   { title: "Household", url: "/household" },
+  //   { title: "Electronic", url: "/electronic" },
+  //   { title: "Personal", url: "/personal" },
+  //   { title: "Popular", url: "/popular" },
+  //   { title: "Orders", url: "/order" },
+  // ];
+
+  const [navList, setNavList] = useState([]);
+
+  const getNavList = async () => {
+    try {
+      let list = await getCall("/category");
+      if (list) {
+        setNavList(list.data);
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    getNavList();
+  }, []);
 
   return (
     <>
@@ -154,9 +173,9 @@ const Navbar = () => {
 
         <div className="w-full bg-white px-4 pb-2 md:pb-0">
           <ul className="w-full hidden md:flex justify-between mx-auto max-w-4xl">
-            {navlist.map((item) => (
-              <li className="px-4 py-3" key={item.title}>
-                <Link href={"/category" + item.url}>{item.title}</Link>
+            {navList.map((item) => (
+              <li className="px-4 py-3" key={item?.title}>
+                <Link href={"/category/" + item?.slug}>{item?.title}</Link>
               </li>
             ))}
           </ul>
@@ -221,9 +240,9 @@ const Navbar = () => {
 
         <div className="flex flex-col justify-start ">
           <ul className="w-full md:hidden flex flex-col items-center justify-between gap-1">
-            {navlist.map((item) => (
-              <li className="px-4 py-3" key={item.title}>
-                <Link href={"/category" + item.url}>{item.title}</Link>
+            {navList.map((item) => (
+              <li className="px-4 py-3" key={item?.title}>
+                <Link href={"/category/" + item?.slug}>{item?.title}</Link>
               </li>
             ))}
           </ul>

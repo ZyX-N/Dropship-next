@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 // import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAQs1pT3G-mTjDq8CPnoJlCgMrNUT8WKhI",
   authDomain: "otp-checking-51274.firebaseapp.com",
@@ -13,9 +12,7 @@ const firebaseConfig = {
   measurementId: "G-WGQ67SCLKZ"
 };
 
-
 export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-
 
 // export const auth = getAuth();
