@@ -37,15 +37,20 @@ const SignUp = () => {
       auth,
       "recaptcha-container",
       {
-        // size: "invisible",
+        size: "invisible",
       }
     );
+
+    console.log("[][][][][");
+    console.log(recaptchaVerifier);
+    
 
     let codeAndCb = await signInWithPhoneNumber(
       auth,
       `+91${data.mobile}`,
       recaptchaVerifier
     );
+console.log(codeAndCb);
 
     setVfCode(codeAndCb);
     setOtpScreen(true);
@@ -165,7 +170,7 @@ const SignUp = () => {
           </div>
           <form onSubmit={subOtp} className="flex flex-col gap-6">
             <div className="flex flex-col px-6">
-              <InputOtp size={6} setValue={setOtp} />
+              {/* <InputOtp size={6} setValue={setOtp} /> */}
             </div>
             <div className="flex flex-col px-6">
               <ButtonSave>Submit Otp</ButtonSave>

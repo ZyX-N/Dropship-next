@@ -1,4 +1,6 @@
 import { Product } from "@/components/card";
+import { Footer } from "@/components/footer";
+import Navbar from "@/components/nav/Navbar";
 import Image from "next/image";
 import React from "react";
 
@@ -63,25 +65,31 @@ export default function Home({ params }: { params: { slug: string } }) {
     : "Category";
 
   return (
-    <main className="max-w-6xl px-4 mx-auto py-6">
-      <section className="flex flex-col mt-4">
-        <h3 className="text-3xl font-semibold capitalize">
-          {categoryTitle || "Category"}
-        </h3>
-        <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
-          {bestDeals?.map(
-            ({ image, category, title, price }: any, index: number) => (
-              <Product
-                key={index}
-                src={image}
-                category={category}
-                title={title}
-                price={price}
-              />
-            )
-          )}
-        </div>
-      </section>
-    </main>
+    <>
+      <Navbar />
+      <main className="max-w-6xl px-4 mx-auto py-6">
+        <section className="flex flex-col mt-4">
+          <h3 className="text-3xl font-semibold capitalize">
+            {categoryTitle || "Category"}
+          </h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
+            {bestDeals?.map(
+              ({ image, category, title, price }: any, index: number) => (
+                <Product
+                  key={index}
+                  src={image}
+                  category={category}
+                  title={title}
+                  price={price}
+                />
+              )
+            )}
+          </div>
+        </section>
+      </main>
+      <div className="mt-12">
+        <Footer />
+      </div>
+    </>
   );
 }
