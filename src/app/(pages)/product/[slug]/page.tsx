@@ -1,5 +1,3 @@
-import { Footer } from "@/components/footer";
-import Navbar from "@/components/nav/Navbar";
 import Image from "next/image";
 import React from "react";
 
@@ -14,7 +12,6 @@ export default function Home({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <Navbar />
       <main className="max-w-6xl px-4 mx-auto py-6">
         <section className="text-black body-font overflow-hidden">
           <div className="lg:w-4/5 mx-auto flex flex-col lg:flex-row">
@@ -211,9 +208,6 @@ export default function Home({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </main>
-      <div className="mt-12">
-        <Footer />
-      </div>
     </>
   );
 }

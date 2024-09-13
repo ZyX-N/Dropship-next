@@ -1,29 +1,26 @@
-'use client'
+"use client";
 import { Product } from "@/components/card";
-import { Footer } from "@/components/footer/footer";
 import Navbar from "@/components/nav/Navbar";
 import { getCall } from "@/service/apiCall";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-export default async function Home({ params }: { params: { slug: string } }) {
+export default function Home({ params }: { params: { slug: string } }) {
   // export default function Home(props:any) {
   const page = 1;
   const count = 20;
 
-  const [data,setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  const response = await getCall(
-    `/product/by-category/${params.slug}?page=${page}&count=${count}`
-  );
+  // const response = await getCall(
+  //   `/product/by-category/${params.slug}?page=${page}&count=${count}`
+  // );
 
-const getProducts = async () =>{
+  const getProducts = async () => {};
 
-} 
-
-  useEffect(()=>{
-    getProducts()
-  },[]);
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
   // console.log(data);
 
   // let list = [];
@@ -89,11 +86,10 @@ const getProducts = async () =>{
 
   return (
     <>
-      <Navbar />
       <main className="max-w-6xl px-4 mx-auto py-6">
         <section className="flex flex-col mt-4">
           <h3 className="text-3xl font-semibold capitalize">
-            {/* {categoryTitle || "Category"} */}
+            {"categoryTitle" || "Category"}
           </h3>
           <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
             {/* {data.data?.map((item: any, index: number) => (
@@ -102,7 +98,6 @@ const getProducts = async () =>{
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

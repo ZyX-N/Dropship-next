@@ -1,8 +1,9 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="text-gray-600 body-font bg-amber-600 mt-12">
       <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
@@ -118,15 +119,11 @@ export const Footer = () => {
         </div>
       </div>
 
-       <div className="bg-gray-100">
+      <div className="bg-gray-100">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
           <p className="text-gray-500 text-sm text-center sm:text-left">
             © 2024 Zixen —
-            <Link
-              href={"/"}
-              className="text-gray-600 ml-1"
-              target="_blank"
-            >
+            <Link href={"/"} className="text-gray-600 ml-1" target="_blank">
               @zixen
             </Link>
           </p>
@@ -192,3 +189,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
