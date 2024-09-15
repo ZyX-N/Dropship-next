@@ -1,5 +1,4 @@
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/nav/Navbar";
+import ParentHomeWrapper from "@/components/wrapper/ParentHomeWrapper";
 
 export default function RootLayout({
   children,
@@ -7,10 +6,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="relative">
-      <Navbar />
-      {children}
-      <Footer />
+    <main className="w-screen h-screen bg-gray-300">
+      <ParentHomeWrapper>
+        {children}
+      </ParentHomeWrapper>
     </main>
   );
 }

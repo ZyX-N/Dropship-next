@@ -7,17 +7,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCall } from "../../service/apiCall";
 
-const Navbar = () => {
-  const [nav, setNav] = useState<boolean>(false);
+interface NavbarProps {
+  setWishlistBar: (value: boolean) => void;
+}
 
-  // const navlist = [
-  //   { title: "Deals", url: "/deals" },
-  //   { title: "Household", url: "/household" },
-  //   { title: "Electronic", url: "/electronic" },
-  //   { title: "Personal", url: "/personal" },
-  //   { title: "Popular", url: "/popular" },
-  //   { title: "Orders", url: "/order" },
-  // ];
+const Navbar: React.FC<NavbarProps> = ({ setWishlistBar }) => {
+  const [nav, setNav] = useState<boolean>(false);
 
   const [navList, setNavList] = useState([]);
 
@@ -79,7 +74,7 @@ const Navbar = () => {
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
               <div className="flex items-center gap-6">
                 <ToolTip message="Wishlist">
-                  <button type="button" className="">
+                  <button type="button" className="" onClick={()=>setWishlistBar(true)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -173,7 +168,7 @@ const Navbar = () => {
 
         <div className="w-full bg-white px-4 pb-2 md:pb-0">
           <ul className="w-full hidden md:flex justify-between mx-auto max-w-4xl">
-            {navList.map((item:any) => (
+            {navList.map((item: any) => (
               <li className="px-4 py-3" key={item?.title}>
                 <Link href={"/category/" + item?.slug}>{item?.title}</Link>
               </li>
@@ -240,7 +235,7 @@ const Navbar = () => {
 
         <div className="flex flex-col justify-start ">
           <ul className="w-full md:hidden flex flex-col items-center justify-between gap-1">
-            {navList.map((item:any) => (
+            {navList.map((item: any) => (
               <li className="px-4 py-3" key={item?.title}>
                 <Link href={"/category/" + item?.slug}>{item?.title}</Link>
               </li>
