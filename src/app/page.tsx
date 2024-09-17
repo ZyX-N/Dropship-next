@@ -1,23 +1,22 @@
+import dynamic from 'next/dynamic';
 import { DiscountBanner, LimitedBanner } from "@/components/banner";
 import { StripCard, Product } from "@/components/card";
-import { BannerSlider } from "@/components/carousel/bannerSlider";
 import { Contact } from "@/components/contact";
-import Footer from "@/components/footer/Footer";
 import { Phone, Truck } from "@/components/icons";
 import { Gift, CreditCard } from "@/components/icons";
-import Navbar from "@/components/nav/Navbar";
-// import Image from "next/image";
+import ParentHomeWrapper from "@/components/wrapper/ParentHomeWrapper";
+import { BannerSlider } from "@/components/carousel/bannerSlider";
 
 export default function Home() {
   const banners: any = [
-    {
-      title: "Slide 1",
-      image: "/static/image/img1.jpg",
-    },
     // {
-    //   title: "Slide 2",
-    //   image: "/static/image/img2.jpg",
+    //   title: "Slide 1",
+    //   image: "/static/image/img1.jpg",
     // },
+    {
+      title: "Slide 2",
+      image: "/static/image/img2.jpg",
+    },
     // {
     //   title: "Slide 3",
     //   image: "/static/image/img3.jpg",
@@ -101,8 +100,7 @@ export default function Home() {
   ];
 
   return (
-    <>
-      <Navbar />
+    <ParentHomeWrapper>
       <div className="w-full">
         <BannerSlider data={banners} />
       </div>
@@ -163,9 +161,6 @@ export default function Home() {
       <div className="mt-12">
         <Contact />
       </div>
-      <div className="mt-12">
-        <Footer />
-      </div>
-    </>
+    </ParentHomeWrapper>
   );
 }
