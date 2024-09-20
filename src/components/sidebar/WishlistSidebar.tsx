@@ -2,7 +2,7 @@ import React from "react";
 import { Cross } from "../icons";
 
 interface wishlistProps {
-  setWishlistBar: (val: Boolean) => null;
+  setWishlistBar: (val: Boolean) => any;
 }
 
 const Wishlist: React.FC<wishlistProps> = ({ setWishlistBar }) => {
