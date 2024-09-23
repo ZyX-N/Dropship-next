@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { DiscountBanner, LimitedBanner } from "@/components/banner";
 import { StripCard, Product } from "@/components/card";
 import { Contact } from "@/components/contact";
