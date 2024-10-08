@@ -4,3 +4,4 @@ export * from "./truck";
 export * from "./phone";
 export * from "./gift";
 export * from "./credit";
+export * from "./star";

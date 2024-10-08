@@ -1,10 +1,10 @@
-import { DiscountBanner, LimitedBanner } from "@/components/banner";
-import { StripCard, Product } from "@/components/card";
-import { Contact } from "@/components/contact";
-import { Phone, Truck } from "@/components/icons";
-import { Gift, CreditCard } from "@/components/icons";
-import ParentHomeWrapper from "@/components/wrapper/ParentHomeWrapper";
-import { BannerSlider } from "@/components/carousel/bannerSlider";
+import { DiscountBanner, LimitedBanner } from "@/app/_components/banner";
+import { StripCard, Product } from "@/app/_components/card";
+import { Contact } from "@/app/_components/contact";
+import { Phone, Truck } from "@/app/_components/icons";
+import { Gift, CreditCard } from "@/app/_components/icons";
+import ParentHomeWrapper from "@/app/_components/wrapper/ParentHomeWrapper";
+import { BannerSlider } from "@/app/_components/carousel/bannerSlider";
 
 export default function Home() {
   const banners: any = [
@@ -113,11 +113,12 @@ export default function Home() {
 
         <section className="flex flex-col mt-10">
           <h3 className="text-3xl font-semibold">Best Deals</h3>
-          <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
+          {/* <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
             {bestDeals?.map(
               ({ image, category, title, price }: any, index: number) => (
                 <Product
                   key={index}
+                  data={}
                   src={image}
                   category={category}
                   title={title}
@@ -126,7 +127,7 @@ export default function Home() {
                 />
               )
             )}
-          </div>
+          </div> */}
         </section>
 
         <div className="mt-16 flex md:flex-row flex-col justify-center items-center gap-6 h-[calc(100vh+300px)] md:h-[calc(100vh-200px)]">
@@ -140,7 +141,7 @@ export default function Home() {
 
         <section className="flex flex-col mt-10">
           <h3 className="text-3xl font-semibold">Most Popular</h3>
-          <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
+          {/* <div className="flex flex-wrap gap-x-4 gap-y-8 w-full mt-6">
             {bestDeals?.map(
               ({ image, category, title, price }: any, index: number) => (
                 <Product
@@ -153,7 +154,7 @@ export default function Home() {
                 />
               )
             )}
-          </div>
+          </div> */}
         </section>
       </div>
 

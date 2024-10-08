@@ -1,4 +1,4 @@
-import ParentHomeWrapper from "@/components/wrapper/ParentHomeWrapper";
+import ParentHomeWrapper from "@/app/_components/wrapper/ParentHomeWrapper";
 
 export default function RootLayout({
   children,
@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="w-screen h-screen bg-gray-300">
+    <main className="w-screen h-screen bg-gray-100">
       <ParentHomeWrapper>
         {children}
       </ParentHomeWrapper>

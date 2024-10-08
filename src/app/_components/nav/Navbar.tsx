@@ -5,7 +5,7 @@ import { Cross } from "../icons/cross";
 import { Person } from "../icons/person";
 import Link from "next/link";
 import Image from "next/image";
-import { getCall } from "../../service/apiCall";
+import { getCall } from "../../../service/apiCall";
 import { Cart } from "../icons/cart";
 import { Heart } from "../icons/heart";
 
@@ -37,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ setWishlistBar, setCartlistBar }) => {
 
   return (
     <>
-      <header className="flex flex-col items-center">
+      <header className="flex flex-col items-center shadow-lg">
         <div className="w-full bg-amber-600 relative">
           <div className="max-w-screen-xl mx-auto flex justify-between py-2 px-4">
             <ul className="md:flex gap-8 hidden">

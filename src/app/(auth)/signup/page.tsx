@@ -1,6 +1,6 @@
 "use client";
-import ButtonSave from "@/components/button/Submit";
-import InputText from "@/components/input/inputText";
+import ButtonSave from "@/app/_components/button/Submit";
+import InputText from "@/app/_components/input/inputText";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -10,7 +10,7 @@ import {
   signInWithPhoneNumber,
   RecaptchaVerifier,
 } from "firebase/auth";
-import InputOtp from "@/components/input/inputOtp";
+import InputOtp from "@/app/_components/input/inputOtp";
 import { useRouter } from "next/navigation";
 
 const SignUp = () => {

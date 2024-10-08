@@ -1,6 +1,6 @@
 "use client";
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/nav/Navbar";
+import Footer from "@/app/_components/footer/Footer";
+import Navbar from "@/app/_components/nav/Navbar";
 import Wishlist from "../sidebar/WishlistSidebar";
 import React, { useState } from "react";
 import Cartlist from "../sidebar/CartSidebar";
