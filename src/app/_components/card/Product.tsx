@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Star } from "../icons";
+import { Heart } from "../icons/heart";
 
 interface ProductCardProps {
   data: {
@@ -30,11 +31,14 @@ export const Product: React.FC<ProductCardProps> = ({ data }) => {
     rating,
   } = data;
 
+  let isLiked = false;
+  const redirectUrl = `/product/${slug}` || "/";
+
   return (
-    <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full bg-white rounded-lg shadow-lg  hover:scale-105 transition-all duration-300">
+    <div className="lg:w-[calc(25%-12px)] md:w-[calc(50%-8px)] w-full bg-white rounded-lg shadow-lg relative">
       <Link
         href={"product" + "/" + slug}
-        className="block relative h-48 rounded overflow-hidden"
+        className="block relative h-60 rounded-t overflow-hidden shadow-lg"
       >
         <Image
           alt="ecommerce"
@@ -63,14 +67,38 @@ export const Product: React.FC<ProductCardProps> = ({ data }) => {
         <div className="flex w-full items-center gap-2">
           <p className="text-gray-900 font-medium text-sm">₹ {price || "-"}</p>
           {strikePrice && (
-            <span className="mt-1 text-sm text-gray-500">
+            <span className="text-sm text-gray-500">
               ₹<del className="ml-0.5">{strikePrice}</del>
+            </span>
+          )}
+          {stock === 0 && (
+            <span className="text-xs ml-1 font-medium text-red-500">
+              Out of stock
             </span>
           )}
         </div>
 
         <div className="flex justify-between">{extraCardContent || ""}</div>
+        <div className="w-full h-10 mt-1">
+          <Link
+            href={redirectUrl}
+          >
+            <button
+              type="button"
+              className="size-full flex justify-center items-center bg-amber-600 rounded-md text-white cursor-pointer hover:scale-105 transition-all duration-300"
+            >
+              Shop Now
+            </button>
+          </Link>
+        </div>
       </div>
+      <Heart
+        className={`size-7 absolute right-3 top-3 z-50 cursor-pointer hover:scale-105 transition-all duration-300 ${
+          !isLiked ? "text-gray-300" : "text-amber-500"
+        }`}
+        fill={!isLiked ? "#d1d5db" : "#f59e0b"}
+        strokeWidth="1.7"
+      />
     </div>
   );
 };

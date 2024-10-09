@@ -9,3 +9,17 @@ export const getProductsByCategory = async ({ slug }: any) => {
   );
   return response
 };
+
+export const getProductsDetails = async ({ slug }: any) => {
+  const response = await getCall(
+    `/product/${slug}`
+  );
+  return response
+};
+
+export const getCategoryDetails = async ({ slug }: any) => {
+  const response = await getCall(
+    `/category/${slug}`
+  );
+  return response
+};

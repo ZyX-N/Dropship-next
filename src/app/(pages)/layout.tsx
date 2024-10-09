@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="w-screen h-screen bg-gray-100">
+    <main className="bg-gray-100">
       <ParentHomeWrapper>
         {children}
       </ParentHomeWrapper>

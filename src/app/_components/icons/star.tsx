@@ -3,7 +3,7 @@ import React from "react";
 
 export const Star: React.FC<{ className?: string; fill?: string }> = ({
   className,
-  fill,
+  fill="none",
 }) => {
     
   return (
