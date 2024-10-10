@@ -21,6 +21,17 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+.normal-ul ul{
+  list-style: disc;
+  margin: unset;
+  padding: unset;
+}
+
+.normal-margin-padding{
+  margin: unset;
+  padding: unset;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

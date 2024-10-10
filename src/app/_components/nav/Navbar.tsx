@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ setWishlistBar, setCartlistBar }) => {
   return (
     <>
       <header className="flex flex-col items-center shadow-lg">
-        <div className="w-full bg-amber-600 relative">
+        <div className="w-full bg-amber-600 text-white relative">
           <div className="max-w-screen-xl mx-auto flex justify-between py-2 px-4">
             <ul className="md:flex gap-8 hidden">
               <li>About Us</li>

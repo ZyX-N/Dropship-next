@@ -6,9 +6,10 @@ import { ICard } from "../icons/i-card";
 
 interface wishlistProps {
   setWishlistBar: (val: Boolean) => any;
+  data: Array<any>;
 }
 
-const Wishlist: React.FC<wishlistProps> = ({ setWishlistBar }) => {
+const Wishlist: React.FC<wishlistProps> = ({ setWishlistBar,data }) => {
   let [wishlistProduct, setWishlistProduct] = useState<Array<any>>([
     {
       title: "Puma Shoe (Red)",
@@ -57,10 +58,10 @@ const Wishlist: React.FC<wishlistProps> = ({ setWishlistBar }) => {
   return (
     <div className="w-screen h-screen bg-transparent z-50 flex">
       <div
-        className="h-full w-1/3 lg:w-2/3 bg-transparent"
+        className="h-full w-1/6 lg:w-2/3 bg-transparent"
         onClick={() => setWishlistBar(false)}
       ></div>
-      <div className="h-full w-2/3 lg:w-1/3 bg-white flex flex-col px-4">
+      <div className="h-full w-5/6 lg:w-1/3 bg-white flex flex-col px-4">
         <div className="flex items-center">
           <h3 className="w-full text-black text-2xl font-medium py-4">
             Your Wishlist

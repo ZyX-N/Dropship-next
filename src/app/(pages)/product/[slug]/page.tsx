@@ -1,9 +1,12 @@
 "use client";
 import { Calender } from "@/app/_components/calender/calender";
 import { Cross, Star } from "@/app/_components/icons";
+import { getPercent } from "@/service/calculation";
 import { getProductsDetails } from "@/app/_server";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { getCall } from "@/service/apiCall";
+import { getLoginToken } from "@/service/token";
 
 const Home = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -24,25 +27,38 @@ const Home = ({ params }: { params: { slug: string } }) => {
     }
   };
 
+  const addToWishlist = async (id:string) => {
+      try {
+        let list = await getCall(`/wishlist/${id}`,{
+          authorization: `Bearer ${getLoginToken()}`
+        });
+        if (list && list.status) {
+          console.log("add in wishlist")
+        }
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+  };
+
   useEffect(() => {
     getProducts();
   }, [slug]);
   console.log(data);
 
   return (
-    <>
       <main className="px-4 mx-auto py-6">
         <section className="text-black body-font">
           <div className="lg:w-full mx-auto flex flex-col lg:justify-center lg:flex-row px-0 lg:px-4">
             <div className="flex justify-end w-full lg:w-1/2">
-              <div className="w-full lg:w-8/12 flex gap-6">
-                <div className="hidden lg:flex flex-col gap-2 overflow-y-auto lg:w-1/5">
+              <div className="w-full lg:w-11/12 flex justify-end gap-3">
+                <div className="hidden lg:flex flex-col gap-2 overflow-y-auto overflow-x-hidden lg:w-1/5">
                   {data?.image?.map(({ url }: { url: string }) => (
-                    <button type="button" onClick={() => setMainImage(url)}>
+                    <button type="button" className="w-full " onClick={() => setMainImage(url)}>
                       <Image
                         src={url || "https://dummyimage.com/400x400"}
                         alt="zixen"
-                        className={`h-20 w-40 object-cover object-center rounded-lg ${
+                        className={`size-full object-cover object-center rounded-lg ${
                           mainImage === url ? "p-0.5 border-2 border-black" : ""
                         }`}
                         width={400}
@@ -55,12 +71,12 @@ const Home = ({ params }: { params: { slug: string } }) => {
                   <Image
                     src={mainImage}
                     alt="zixen"
-                    className="w-full h-96 object-cover object-center rounded-md"
+                    className="w-full h-[50vh] lg:h-[70vh] object-cover object-center rounded-md"
                     width={400}
                     height={400}
                   />
 
-                  <div className="lg:hidden flex gap-2 overflow-x-auto w-[40px]">
+                  <div className="lg:hidden flex gap-2 overflow-y-scroll w-full">
                     {data?.image?.map(({ url }: { url: string }) => (
                       <button
                         type="button"
@@ -82,7 +98,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
                     ))}
                   </div>
 
-                  <div className="flex gap-4 w-full">
+                  {/* <div className="flex gap-4 w-full">
                     <button
                       type="button"
                       className="w-[calc(50%-8px)] py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"
@@ -95,8 +111,9 @@ const Home = ({ params }: { params: { slug: string } }) => {
                     >
                       Buy Now
                     </button>
-                  </div>
-                  <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 absolute right-4 top-4">
+                  </div> */}
+
+                  <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 absolute right-4 top-4" onClick={()=>addToWishlist(data?._id)}>
                     <svg
                       fill="currentColor"
                       strokeLinecap="round"
@@ -185,6 +202,11 @@ const Home = ({ params }: { params: { slug: string } }) => {
                     <del className="ml-0.5">₹{data?.strikePrice}</del>
                   </span>
                 )}
+                {data?.strikePrice > data?.price && (
+                  <span className="text-md ml-0 font-medium text-green-500">
+                    ({getPercent(data.strikePrice,data.strikePrice-data.price)}% OFF)
+                  </span>
+                )}
                 {data?.stock === 0 && (
                   <span className="text-xs ml-1 font-medium text-red-500">
                     Out of stock
@@ -193,7 +215,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
               </div>
 
               {/* pincode */}
-              <div className="flex w-full items-center gap-2 mt-2">
+              <div className="flex w-full items-center gap-2 mt-4">
                 <div className="flex items-center border border-gray-400 h-10 rounded-md bg-white w-2/3 lg:w-1/2">
                   <span className="h-full w-1/5 border-r border-gray-300 flex justify-center items-center">
                     <Image
@@ -224,12 +246,28 @@ const Home = ({ params }: { params: { slug: string } }) => {
                 </div>
               </div>
 
+              {/* buttons */}
+              <div className="flex gap-4 w-full mt-4">
+                <button
+                  type="button"
+                  className="w-1/4 py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"
+                >
+                  Add to cart
+                </button>
+                <button
+                  type="button"
+                  className="w-1/4 py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"
+                >
+                  Buy Now
+                </button>
+              </div>
+
               {/* Description */}
-              <div className="border-b-2 border-white my-3 pb-3">
+              <div className="border-b border-gray-300 my-2 pb-2 text-lg font-medium mt-4">
                 Description
               </div>
               <div
-                className="leading-relaxed text-sm"
+                className="leading-relaxed text-sm normal-ul normal-margin-padding"
                 dangerouslySetInnerHTML={{
                   __html: data?.description || "",
                 }}
@@ -238,8 +276,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
           </div>
         </section>
       </main>
-    </>
   );
-};
+}
 
 export default Home;
