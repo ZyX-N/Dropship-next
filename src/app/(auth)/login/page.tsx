@@ -1,18 +1,32 @@
 "use client";
 import ButtonSave from "@/app/_components/button/Submit";
 import InputText from "@/app/_components/input/inputText";
+import { postCall } from "@/service/apiCall";
+import { setLoginToken } from "@/service/token";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export default function Signin() {
+  const router = useRouter();
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
-  const submitHandler = (e: FormEvent) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     console.log(data);
+
+    const response = await postCall(
+      `/auth/sign-in`,
+      {},
+      { ...data, username: data.email }
+    );
+    if (response.status) {
+      setLoginToken(response?.data);
+      router.push("/");
+    }
   };
   return (
     <div className="w-full h-screen overflow-x-hidden flex flex- justify-center items-center bg-amber-500 sm:px-0 px-4">

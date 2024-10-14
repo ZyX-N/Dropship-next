@@ -1,3 +1,4 @@
+export * from "./cart";
 export * from "./cross";
 export * from "./person";
 export * from "./truck";
@@ -5,3 +6,4 @@ export * from "./phone";
 export * from "./gift";
 export * from "./credit";
 export * from "./star";
+export * from "./i-card";

@@ -81,7 +81,7 @@ console.log(codeAndCb);
         id="recaptcha-container"
       ></div>
 
-      {!otpScreen ? (
+      {otpScreen ? (
         <div className="w-full sm:w-[450px] pt-6 pb-10 bg-white rounded-md shadow-lg border-2 border-black flex flex-col gap-4">
           <h2 className="text-2xl font-medium px-6 pb-4">Sign Up</h2>
           <form

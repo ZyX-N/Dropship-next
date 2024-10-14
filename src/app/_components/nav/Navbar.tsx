@@ -7,14 +7,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCall } from "../../../service/apiCall";
 import { Cart } from "../icons/cart";
-import { Heart } from "../icons/heart";
 
 interface NavbarProps {
-  setWishlistBar: (value: boolean) => void;
   setCartlistBar: (value: boolean) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ setWishlistBar, setCartlistBar }) => {
+const Navbar: React.FC<NavbarProps> = ({ setCartlistBar }) => {
   const [nav, setNav] = useState<boolean>(false);
 
   const [navList, setNavList] = useState([]);
@@ -76,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ setWishlistBar, setCartlistBar }) => {
             </a>
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
               <div className="flex items-center gap-6">
-                <ToolTip message="Wishlist">
+                {/* <ToolTip message="Wishlist">
                   <button
                     type="button"
                     className=""
@@ -84,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ setWishlistBar, setCartlistBar }) => {
                   >
                     <Heart />
                   </button>
-                </ToolTip>
+                </ToolTip> */}
 
                 <ToolTip message="Cart">
                   <button

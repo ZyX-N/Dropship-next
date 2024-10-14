@@ -1,58 +1,43 @@
 import React, { useState } from "react";
 import { Cross } from "../icons";
 import { Chevron } from "../icons/chevron";
+import { postCall } from "@/service/apiCall";
+import { getLoginToken } from "@/service/token";
 
 interface cartListProps {
   setCartlistBar: (val: Boolean) => any;
+  getCart: () => any;
+  data: Array<any>;
 }
 
-const Cartlist: React.FC<cartListProps> = ({ setCartlistBar }) => {
-  const [cartProduct, setCartProduct] = useState<Array<any>>([
-    {
-      title: "Puma Shoe (Red)",
-      mrp: 15999,
-      price: 9999,
-      quantity: 2,
-      image: "/static/image/img3.jpg",
-    },
-    {
-      title: "Adidas Shoe (Black)",
-      mrp: 1599,
-      price: 999,
-      quantity: 7,
-      image: "/static/image/img2.jpg",
-    },
-    {
-      title: "Jordan (Blue)",
-      mrp: 179999,
-      price: 129999,
-      quantity: 1,
-      image: "/static/image/img1.jpg",
-    },
-    {
-      title: "Puma Shoe (Red)",
-      mrp: 15999,
-      price: 9999,
-      quantity: 2,
-      image: "/static/image/img3.jpg",
-    },
-    {
-      title: "Adidas Shoe (Black)",
-      mrp: 1599,
-      price: 999,
-      quantity: 7,
-      image: "/static/image/img2.jpg",
-    },
-    {
-      title: "Jordan (Blue)",
-      mrp: 179999,
-      price: 129999,
-      quantity: 1,
-      image: "/static/image/img1.jpg",
-    },
-  ]);
-
+const Cartlist: React.FC<cartListProps> = ({
+  setCartlistBar,
+  data,
+  getCart,
+}) => {
   const [showBillDetails, setShowBillDetails] = useState<boolean>(false);
+  console.log(data);
+
+  const updateToCart = async (id: string, quantity: number) => {
+    try {
+      let resp = await postCall(
+        `/cart`,
+        {
+          authorization: `Bearer ${getLoginToken()}`,
+        },
+        {
+          product: id,
+          quantity: quantity,
+        }
+      );
+      if (resp && resp.status) {
+        getCart();
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
   return (
     <div className="w-screen h-screen bg-transparent z-50 flex">
@@ -75,12 +60,15 @@ const Cartlist: React.FC<cartListProps> = ({ setCartlistBar }) => {
         </div>
 
         <div className="w-full flex flex-col h-[calc(100%-130px)] overflow-y-auto divide-y pr-2 px-4">
-          {cartProduct.length > 0 ? (
-            cartProduct.map(({ title, mrp, price, quantity, image }, index) => (
-              <div className="flex gap-2 py-2" key={title}>
+          {data.length > 0 ? (
+            data.map(({ product, quantity, _id }: any, index) => (
+              <div className="flex gap-2 py-2" key={_id}>
                 <div className="w-1/4 h-28">
                   <img
-                    src={image}
+                    src={
+                      product?.image[0]?.url ||
+                      "http://13.127.50.182:5000/image/android-chrome-512x512-1723279207572.png"
+                    }
                     alt="Zixen"
                     className="size-full rounded-lg"
                   />
@@ -88,26 +76,17 @@ const Cartlist: React.FC<cartListProps> = ({ setCartlistBar }) => {
 
                 <div className="flex flex-col justify-center w-3/4 gap-2 pl-3">
                   <div className="w-full inline-flex font-semibold text-black">
-                    {title}
+                    {product?.title}
                   </div>
                   <div className="w-full inline-flex text-gray-700">
-                    ₹ {mrp}
+                    ₹ {Number(product?.price) * Number(quantity)}
                   </div>
                   <div className="w-full inline-flex justify-end">
                     <span className="inline-flex">
                       <button
                         type="button"
                         className="rounded-l-md px-2 border border-gray-300 bg-gray-300 flex justify-center items-center font-semibold cursor-pointer"
-                        onClick={() =>
-                          setCartProduct(
-                            cartProduct.map((e, i) => {
-                              if (i === index) {
-                                e.quantity > 1 && e.quantity--;
-                              }
-                              return e;
-                            })
-                          )
-                        }
+                        onClick={() => updateToCart(product?._id, quantity - 1)}
                       >
                         -
                       </button>
@@ -116,29 +95,14 @@ const Cartlist: React.FC<cartListProps> = ({ setCartlistBar }) => {
                         value={quantity}
                         className="w-10 border border-gray-300 text-center outline-none"
                         onChange={(ev) =>
-                          setCartProduct(
-                            cartProduct.map((e, i) => {
-                              if (i === index) {
-                                e.quantity = ev.target.value;
-                              }
-                              return e;
-                            })
-                          )
+                          Number(ev.target.value) > 0 &&
+                          updateToCart(product?._id, Number(ev.target.value))
                         }
                       />
                       <button
                         type="button"
                         className="rounded-r-md px-2 border border-gray-300 bg-gray-300 flex justify-center items-center font-semibold cursor-pointer"
-                        onClick={() =>
-                          setCartProduct(
-                            cartProduct.map((e, i) => {
-                              if (i === index) {
-                                e.quantity++;
-                              }
-                              return e;
-                            })
-                          )
-                        }
+                        onClick={() => updateToCart(product?._id, quantity + 1)}
                       >
                         +
                       </button>
