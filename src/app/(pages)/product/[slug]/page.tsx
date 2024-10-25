@@ -4,12 +4,14 @@ import { Cross, Star } from "@/app/_components/icons";
 import { getPercent } from "@/service/calculation";
 import { getProductsDetails } from "@/app/_server";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { postCall } from "@/service/apiCall";
 import { getLoginToken } from "@/service/token";
+import { ProContext } from "@/app/_context/contextProvider";
 
 const Home = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
+  let { getCart_f }: any = useContext(ProContext);
 
   const [data, setData] = useState<any>(null);
   const [mainImage, setMainImage] = useState<string>("");
@@ -45,8 +47,8 @@ const Home = ({ params }: { params: { slug: string } }) => {
         }
       );
       if (resp && resp.status) {
-        getProducts()
-        console.log("add in cart");
+        getProducts();
+        getCart_f();
       }
     } catch (error) {
       console.log(error);
@@ -56,8 +58,9 @@ const Home = ({ params }: { params: { slug: string } }) => {
 
   useEffect(() => {
     getProducts();
-  }, [slug]);
-  console.log(data);
+  }, []);
+
+  // console.log(data);
 
   return (
     <main className="px-4 mx-auto py-6">
@@ -71,6 +74,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
                     type="button"
                     className="w-full "
                     onClick={() => setMainImage(url)}
+                    key={url}
                   >
                     <Image
                       src={url || "https://dummyimage.com/400x400"}
@@ -99,6 +103,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
                       type="button"
                       onClick={() => setMainImage(url)}
                       className="size-20"
+                      key={url}
                     >
                       <Image
                         src={url || "https://dummyimage.com/400x400"}
@@ -118,7 +123,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
           <div className="lg:w-1/2 w-full lg:px-10 mt-6 lg:mt-0">
             {/* category */}
             <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
-              {data?.category?.title || "ZIXEN"}
+              {data?.category?.title}
             </h2>
 
             {/* title */}
@@ -198,8 +203,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
 
             {/* buttons */}
             <div className="flex gap-4 w-full mt-4">
-              {!
-              data?.inCart && (
+              {!data?.inCart && (
                 <button
                   type="button"
                   className="w-1/4 py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"

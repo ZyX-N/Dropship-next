@@ -27,9 +27,9 @@ body {
   padding: unset;
 }
 
-.normal-margin-padding{
-  margin: unset;
-  padding: unset;
+.normal-margin-paddin{
+  margin: 8px;
+  padding: 0px;
 }
 
 @layer utilities {

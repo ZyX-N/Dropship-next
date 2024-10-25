@@ -16,7 +16,7 @@ const Cartlist: React.FC<cartListProps> = ({
   getCart,
 }) => {
   const [showBillDetails, setShowBillDetails] = useState<boolean>(false);
-  console.log(data);
+  // console.log(data);
 
   const updateToCart = async (id: string, quantity: number) => {
     try {
