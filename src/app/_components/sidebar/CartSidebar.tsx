@@ -3,6 +3,7 @@ import { Cross } from "../icons";
 import { Chevron } from "../icons/chevron";
 import { postCall } from "@/service/apiCall";
 import { getLoginToken } from "@/service/token";
+import Link from "next/link";
 
 interface cartListProps {
   setCartlistBar: (val: Boolean) => any;
@@ -121,7 +122,7 @@ const Cartlist: React.FC<cartListProps> = ({
             className={`flex flex-col w-full absolute left-0 bg-white py-4 px-4 transition-all duration-500 ease-in-out ${
               showBillDetails
                 ? "opacity-100 z-40 bottom-full"
-                : "opacity-0 z-0 -bottom-full"
+                : "opacity-0 z-0 -bottom-[200%]"
             }`}
             style={{
               boxShadow: "0px -8px 10px 0px rgba(0,0,0,0.3)",
@@ -154,12 +155,18 @@ const Cartlist: React.FC<cartListProps> = ({
               />
             </button>
           </div>
-          <button
-            type="button"
-            className="w-1/2 rounded-lg h-full bg-slate-800 text-white font-semibold flex items-center justify-center"
+          <Link
+            href="/payment?type=cart"
+            className="w-1/2 h-full"
+            onClick={()=>setCartlistBar(false)}
           >
-            Check Out
-          </button>
+            <button
+              type="button"
+              className="w-full h-full rounded-lg bg-slate-800 text-white font-semibold flex items-center justify-center"
+            >
+              Check Out
+            </button>
+          </Link>
         </div>
       </div>
     </div>

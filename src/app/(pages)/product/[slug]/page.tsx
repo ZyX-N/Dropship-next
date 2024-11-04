@@ -1,21 +1,25 @@
 "use client";
-import { Calender } from "@/app/_components/calender/calender";
 import { Cross, Star } from "@/app/_components/icons";
 import { getPercent } from "@/service/calculation";
 import { getProductsDetails } from "@/app/_server";
 import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
-import { postCall } from "@/service/apiCall";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { getCall, postCall } from "@/service/apiCall";
 import { getLoginToken } from "@/service/token";
 import { ProContext } from "@/app/_context/contextProvider";
+import { useRouter } from "next/navigation";
+import InputSearch from "@/app/_components/input/inputSearch";
+import Link from "next/link";
 
 const Home = ({ params }: { params: { slug: string } }) => {
+  const router = useRouter();
   const { slug } = params;
   let { getCart_f }: any = useContext(ProContext);
 
   const [data, setData] = useState<any>(null);
   const [mainImage, setMainImage] = useState<string>("");
-  const [pincode, setPincode] = useState<string>("");
+  // const [pincode, setPincode] = useState<string>("");
+  // const [pincodeList, setPincodeList] = useState<Array<any>>([]);
 
   const getProducts = async () => {
     const resp = await getProductsDetails({
@@ -49,6 +53,8 @@ const Home = ({ params }: { params: { slug: string } }) => {
       if (resp && resp.status) {
         getProducts();
         getCart_f();
+      } else if (resp.status_code) {
+        router.push("/login");
       }
     } catch (error) {
       console.log(error);
@@ -56,11 +62,29 @@ const Home = ({ params }: { params: { slug: string } }) => {
     }
   };
 
+  // const searchPincode = async (str: string) => {
+  //   try {
+  //     let resp = await postCall(
+  //       `/location/available-pincode`,
+  //       {},
+  //       { pincode: str }
+  //     );
+  //     if (resp && resp.status) {
+  //       setPincodeList(resp.data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     return null;
+  //   }
+  // };
+
+  // useMemo(() => {
+  //   searchPincode(pincode);
+  // }, [pincode]);
+
   useEffect(() => {
     getProducts();
   }, []);
-
-  // console.log(data);
 
   return (
     <main className="px-4 mx-auto py-6">
@@ -170,7 +194,7 @@ const Home = ({ params }: { params: { slug: string } }) => {
             </div>
 
             {/* pincode */}
-            <div className="flex w-full items-center gap-2 mt-4">
+            {/* <div className="flex w-full items-center gap-2 mt-4">
               <div className="flex items-center border border-gray-400 h-10 rounded-md bg-white w-2/3 lg:w-1/2">
                 <span className="h-full w-1/5 border-r border-gray-300 flex justify-center items-center">
                   <Image
@@ -197,9 +221,15 @@ const Home = ({ params }: { params: { slug: string } }) => {
                       <Cross className="size-4" strokeWidth="2" />
                     </button>
                   )}
+
+                  <InputSearch
+                    value={pincode}
+                    setValue={setPincode}
+                    option={pincodeList}
+                  />
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* buttons */}
             <div className="flex gap-4 w-full mt-4">
@@ -212,12 +242,14 @@ const Home = ({ params }: { params: { slug: string } }) => {
                   Add to cart
                 </button>
               )}
-              <button
-                type="button"
-                className="w-1/4 py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"
-              >
-                Buy Now
-              </button>
+              <Link href={`/payment?type=product&q=${slug}`} className="w-1/4">
+                <button
+                  type="button"
+                  className="w-full py-3 text-white rounded-md bg-amber-600 hover:bg-amber-700 hover:scale-105 transition-all duration-300"
+                >
+                  Buy Now
+                </button>
+              </Link>
             </div>
 
             {/* Description */}
