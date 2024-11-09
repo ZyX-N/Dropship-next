@@ -18,8 +18,6 @@ const Home = ({ params }: { params: { slug: string } }) => {
 
   const [data, setData] = useState<any>(null);
   const [mainImage, setMainImage] = useState<string>("");
-  // const [pincode, setPincode] = useState<string>("");
-  // const [pincodeList, setPincodeList] = useState<Array<any>>([]);
 
   const getProducts = async () => {
     const resp = await getProductsDetails({
@@ -61,26 +59,6 @@ const Home = ({ params }: { params: { slug: string } }) => {
       return null;
     }
   };
-
-  // const searchPincode = async (str: string) => {
-  //   try {
-  //     let resp = await postCall(
-  //       `/location/available-pincode`,
-  //       {},
-  //       { pincode: str }
-  //     );
-  //     if (resp && resp.status) {
-  //       setPincodeList(resp.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     return null;
-  //   }
-  // };
-
-  // useMemo(() => {
-  //   searchPincode(pincode);
-  // }, [pincode]);
 
   useEffect(() => {
     getProducts();

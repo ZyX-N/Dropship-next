@@ -1,55 +1,70 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 const InputSearch: React.FC<{
   value?: string;
   setValue?: any;
   option?: Array<any>;
-}> = ({ value, setValue, option = [] }) => {
+  placeholder?: string;
+}> = ({ value, setValue, option = [], placeholder = "" }) => {
   let inputBox = useRef(null);
 
+  const optionsAtOneGlance: number = 5;
+  const [isVisible, setIsVisible] = useState(false);
+
   const focusHandler = (e: any) => {
-    let siblingElement: HTMLElement = e.target.nextSibling;
-    siblingElement.classList.remove("hidden");
+    setIsVisible(true);
   };
 
   const blurHandler = (e: any) => {
-    let siblingElement: HTMLElement = e.target.nextSibling;
     setTimeout(() => {
-      siblingElement.classList.add("hidden");
+      setIsVisible(false);
     }, 200);
   };
 
-  const selectHandler = (e: React.MouseEvent<HTMLElement>, data: string) => {
+  const selectHandler = (data: string) => {
     setValue(data);
-    let parentElement = (e.currentTarget as HTMLElement).parentElement;
-    if (parentElement) {
-      parentElement.classList.add("hidden");
-    }
+    setIsVisible(false);
   };
 
+  useMemo(() => {
+    if (option.length === 0) {
+      setIsVisible(false);
+    }
+  }, [option]);
+
   return (
-    <div className="relative w-64">
+    <div className="relative w-full">
       <input
         type="text"
-        placeholder="Search Pincode"
-        className="w-full px-4 py-2 border rounded outline-none"
+        placeholder={placeholder || ""}
+        className="w-full bg-white py-2 px-2.5 text-sm rounded-md outline-none border border-gray-300 focus:border-amber-500"
         onFocus={focusHandler}
         onBlur={blurHandler}
         ref={inputBox}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          setValue(e.target.value);
+          setIsVisible(true);
+        }}
       />
-      <ul className="absolute z-10 w-full top-full bg-white border rounded shadow hidden">
-        {option?.map(({ _id, code }) => (
-          <li
-            className="px-4 py-2 hover:bg-gray-200 cursor-pointer border-y z-20"
-            key={_id}
-            onClick={(e) => selectHandler(e, code)}
-          >
-            {code}
-          </li>
-        ))}
-      </ul>
+      {isVisible && option.length > 0 && (
+        <ul
+          className="absolute z-10 w-full top-full bg-white rounded-md shadow overflow-auto border border-gray-400"
+          style={{
+            maxHeight: `${optionsAtOneGlance * 32 + 5}px`,
+          }}
+        >
+          {option?.map(({ _id, title, value }) => (
+            <li
+              className="px-4 h-8 flex justify-start items-center cursor-pointer border-y z-20 text-sm hover:bg-amber-600 hover:text-white"
+              key={_id}
+              onClick={() => selectHandler(value)}
+            >
+              {title}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
