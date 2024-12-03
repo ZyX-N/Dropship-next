@@ -18,7 +18,6 @@ export const getProductsByCategory = async ({ slug }: any) => {
 export const getProductsDetails = async ({ slug, header = {} }: any) => {
   try {
     const response = await getCall(`/product/${slug}`, header);
-
     return response;
   } catch (error) {
     console.log(error);
