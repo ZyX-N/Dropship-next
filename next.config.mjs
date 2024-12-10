@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['localhost','13.127.50.182','dummyimage.com'],
+      domains: ['localhost','13.127.50.182','dummyimage.com',"upload.wikimedia.org"],
         // remotePatterns: [
         //   {
         //     protocol: 'https',

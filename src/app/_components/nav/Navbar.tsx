@@ -73,16 +73,16 @@ const Navbar: React.FC<NavbarProps> = ({ setCartlistBar }) => {
               </span>
             </a>
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-              <div className="flex items-center gap-6">
-                {/* <ToolTip message="Wishlist">
-                  <button
-                    type="button"
-                    className=""
-                    onClick={() => setWishlistBar(true)}
+              <div className="flex items-center gap-8">
+
+                <ToolTip message="Orders">
+                  <Link
+                    href="/account/order"
+                    className="font-semibold"
                   >
-                    <Heart />
-                  </button>
-                </ToolTip> */}
+                    Orders
+                  </Link>
+                </ToolTip>
 
                 <ToolTip message="Cart">
                   <button

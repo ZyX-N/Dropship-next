@@ -3,8 +3,8 @@ import { Triangle } from "react-loader-spinner";
 const TriangleSpinner = ({
   // color = "#4fa94d",
   color = "#d97706",
-  height = 200,
-  width = 200
+  height = 150,
+  width = 150
 }) => {
   return (
     <div className="w-full flex justify-center">
